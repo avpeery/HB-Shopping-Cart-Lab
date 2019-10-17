@@ -6,7 +6,7 @@ put melons in a shopping cart.
 Authors: Joel Burton, Christian Fernandez, Meggie Mahnken, Katie Byers.
 """
 
-from flask import Flask, session, request, url_for, render_template, redirect, flash
+from flask import Flask, session, url_for, render_template, redirect, flash
 import jinja2
 
 import melons
@@ -76,18 +76,12 @@ def add_to_cart(melon_id):
 
     if session.get('cart'):
         session['cart'][melon_id] = session['cart'].get(melon_id, 0) + 1
+
     else:
         session['cart'] = {}
         session['cart'][melon_id] = 1
 
-    # cart = session.get('cart')
-
-    # return render_template("cart.html",
-    #                         cart = cart)
-    if session['cart'].get(melon_id):
-        flash("successfully added to cart!")
-
-    # cart_session = session['cart']
+    flash("Successfully added to cart!")
 
     return redirect(url_for('show_shopping_cart'))
 #render template, brings in cart html, and add melon to cart
@@ -122,19 +116,21 @@ def show_shopping_cart():
     # been added to the session
 
  #create dictionary with variables for use in html paired with the look up values
+    melon_dict = {}
+    grand_total = 0
+
     for melon_id in cart:
         melon_name = melons.get_by_id(melon_id).common_name
         melon_price = melons.get_by_id(melon_id).price
         quantity = cart[melon_id]
         total = melon_price * quantity
+        grand_total += total
+        melon_dict[melon_name] = [quantity, melon_price, total]
 
 
     return render_template("cart.html",
-                            cart = cart,
-                            melon_name = melon_name,
-                            melon_price = melon_price,
-                            quantity = quantity,
-                            total = total)
+                            melon_dict = melon_dict,
+                            grand_total = grand_total)
 
     #return render_template("cart.html",cart=cart)
 
