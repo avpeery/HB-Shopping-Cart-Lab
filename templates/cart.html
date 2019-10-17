@@ -13,14 +13,15 @@
         </tr>
         </thead>
         <tbody>
+        <!--     for loop to go through dictionary -->
         <tr>
-            <td>Ancient Watermelon</td>
-            <td>5</td>
-            <td>$3.00</td>
-            <td>$15.00</td>
+            <td>{{ melon_name }}</td>
+            <td>{{ quantity }}</td>
+            <td>{{ melon_price }}</td>
+            <td>{{ total }}</td>
         </tr>
         <tr>
-            <td>Charleston Gray</td>
+            <td>{{ cart }}</td>
             <td>2</td>
             <td>$2.00</td>
             <td>$4.00</td>
@@ -44,4 +45,8 @@
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 
+
+
 {% endblock %}
+
+<!-- #cart needs Jinja to refer to the correct melon id -->
