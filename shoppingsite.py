@@ -10,6 +10,7 @@ from flask import Flask, session, url_for, render_template, redirect, flash
 import jinja2
 
 import melons
+import customers
 
 app = Flask(__name__)
 
