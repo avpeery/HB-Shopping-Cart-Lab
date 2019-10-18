@@ -177,8 +177,10 @@ def process_login():
         flash("Incorrect password")
         return redirect(url_for("process_login"))
 
-
-
+@app.route("/logout")
+def process_logout():
+    session.pop('logged_in_customer_email', None)
+    return redirect(url_for('process_login'))
 
 @app.route("/checkout")
 def checkout():
@@ -193,3 +195,4 @@ def checkout():
 #create html page for checkout in future (not in scope)
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
+

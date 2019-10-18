@@ -24,7 +24,12 @@
                         My Melon Cart
                     </a>
                 </li>
-                <li><a href="/login">Log In</a></li>
+                <li> {% if "logged_in_customer_email" not in session %}
+                      <a href="/login">Log In</a>
+                    {% else %}
+                      <a href="/logout">Log Out</a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
 

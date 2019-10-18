@@ -49,5 +49,3 @@ def get_by_email(email):
 
 
 customers = read_customer_types_from_file("customers.txt")
-
-print(customers)
